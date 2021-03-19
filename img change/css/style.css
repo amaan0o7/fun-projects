@@ -1,0 +1,20 @@
+.container{
+  width: 1000px;
+  height: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.bulb-off{
+  width: 500px;
+  height: 700px;
+  background: url('/images/slide-1.jpg') no-repeat;
+  margin: auto;
+}
+
+.bulb-on{
+  width: 500px;
+  height: 700px;
+  background: url('/images/slide-2.jpg') no-repeat;;
+  margin: auto;
+}
