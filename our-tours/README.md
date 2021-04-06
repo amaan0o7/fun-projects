@@ -1,1 +1,1 @@
-## React Projects Starter APP
+## showcasing loading,deleting and refreshing function
