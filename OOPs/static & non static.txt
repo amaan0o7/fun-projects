@@ -1,0 +1,81 @@
+Static Data Members
+    Meaning?
+    Implication?
+    Warning?
+Static Function?
+    Meaning? -> Doesn't require objects for their invocation, can be called directly via class names
+    Where are they used?
+        Utility stateless fns example Math.min, Math.max, Arrays.sort, Arrays.fill
+        Stateless -> Nothing is saved between two fn calls, each call is independent and takes
+        all input as parameters
+    Implications?
+        this keyword cannot be used in static fns. Why?
+            (because can be called by class name, in that case "this" won't know which instance to point to)
+        non-static data members can't be  used in static fns. Why?
+            (because it can be called by classname and in that case we don't if any object exists, and if they do, we won't know which objects non-static data members to use.)
+        non-static fns can't be used in static fns. Why?
+            -> can be used, by making an object inside the static fn and calling the non-static fn on it
+            -> can't be called directly
+
+    Can non-static fn, use static data member? Why? -> Yes, because we have extra information available (not less)
+    Can non-static fn, use static fn? Why? -> same as above.
+
+Inheritance & Polymorphism
+    P and C - all cases, except abstract fns and class
+
+
+
+
+
+    EX:
+
+
+
+import java.io.*;
+import java.util.*;
+
+class Main {
+  
+  static class P {
+    int d = 1;
+    int d1 = 10;
+
+    void fun(){
+        System.out.println("P fun");
+    }
+
+    void fun1(){
+        System.out.println("P fun1");
+    }
+  }
+
+  static class C extends P {
+    int d = 2;
+    int d2 = 20;
+
+    void fun(){
+        System.out.println("C fun");
+    }
+
+    void fun2(){
+        System.out.println("C fun2");
+    }
+  }
+  
+  
+    
+  public static void main(String[] args) throws NumberFormatException, IOException {
+      // case 2 => C and C
+      C obj = new C();
+      System.out.println(obj.d); // conflict (object has P.d and C.d, resolved by ref -> C)
+      System.out.println(((P)obj).d); // conflict (object has P.d and C.d, resolved by ref -> P)
+      System.out.println(obj.d1); // available only in P
+      System.out.println(obj.d2); // available only in C
+      
+      obj.fun(); // available at C first
+      obj.fun1(); // available only in P
+      obj.fun2(); // available only in C
+  }
+
+
+}
