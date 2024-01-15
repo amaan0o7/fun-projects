@@ -1,0 +1,93 @@
+-> Object -> toString, equals, hashcode
+
+toString:
+Need to Override tostring method in case of printing Object like arraylist.
+EX:
+	@Override
+	public String toString() {
+		return "[" + this.name + ", " + this.price + ", " + this.speed + "]";
+	}
+
+
+equals:
+compare objects so that multiple object with same with dosen't end up in the same Bucket.
+
+hashcode:
+to generate unique keys based on some logic.
+hashmap first creates a hashcode then it compares the object values with equal method.
+
+
+
+
+
+
+public class Point {
+	private int x;
+	private int y;
+	
+	Point(int x, int y){
+		this.x = x;
+		this.y = y;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "[" + this.x + ", " + this.y + "]";
+	}
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return this.x + this.y;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Point other = (Point)obj;
+		
+		if(this.x == other.x && this.y == other.y) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+
+public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Point[] points = new Point[10];
+		points[0] = new Point(0, 0);   //same hashCode 
+		points[1] = new Point(1, 5);
+		points[2] = new Point(2, 3);
+		points[3] = new Point(5, 4);
+		points[4] = new Point(2, 3);
+		points[5] = new Point(1, 5);
+		points[6] = new Point(0, 0);   //same hashCode 
+		points[7] = new Point(2, 3);
+		points[8] = new Point(5, 4);
+		points[9] = new Point(0, 0);   //same hashCode still end up in different bucket beacuse of eqauls method.
+		
+		System.out.println(points[0].hashCode());
+		System.out.println(points[6].hashCode());
+		System.out.println(points[9].hashCode());
+		
+		System.out.println(points[0].equals(points[6]));
+		System.out.println(points[6].equals(points[9]));
+		System.out.println(points[0].equals(points[9]));
+
+		HashMap<Point, Integer> map = new HashMap<>();
+		for(Point p: points) {
+			if(map.containsKey(p)) {
+				map.put(p, map.get(p) + 1);
+			} else {
+				map.put(p,  1);
+			}
+		}
+		
+		System.out.println(map);
+		
+		String
+	}
+
